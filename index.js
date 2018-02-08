@@ -14,11 +14,35 @@ app.use(logger('dev'));
 // Serve static files
 app.use(express.static(path.join(__dirname, 'assets'))); 
 
-// NEW: Handle requests for a single book
-app.get('/books/:id', function(req, res) {
-    var bookData = {title: "the name of the book", author: "some writer"};
-    res.render('bookView.ejs', {book: bookData});
+
+app.get('/', function(req, res){
+  res.render('index.ejs', {
+        title: 'My Site',
+    nav: ['Home','About','Contact'] 
   });
+});
+
+app.get('/home', function(req, res){
+  res.render('index.ejs', {
+        title: 'My Site',
+    nav: ['Home','About','Contact'] 
+  });
+});
+
+
+app.get('/about', function(req, res){
+  res.render('about.ejs', {
+    title: 'About',
+     nav: ['Home','About','Contact']
+  });
+});
+
+app.get('/contact', function(req, res){
+  res.render('contact.ejs', {
+    title: 'Contact',
+     nav: ['Home','About','Contact']
+  });
+});
 
 // Route for everything else.
 app.get('*', function(req, res){
